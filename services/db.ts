@@ -71,7 +71,10 @@ class FsMigrationProvider implements MigrationProvider {
   }
 }
 
-export async function openDatabase(dbPath: string): Promise<DB> {
+export async function openDatabase(
+  dbPath: string,
+  { quiet = false }: { quiet?: boolean } = {},
+): Promise<DB> {
   const db = new Kysely<Database>({
     dialect: new SqliteDialect({
       database: new KyselySqlite3Database(dbPath),
@@ -84,10 +87,12 @@ export async function openDatabase(dbPath: string): Promise<DB> {
   const { error, results } = await migrator.migrateToLatest();
   for (const result of results ?? []) {
     if (result.status === "Success") {
-      console.log(
-        `%c[db] migration "${result.migrationName}" ok`,
-        "color: green",
-      );
+      if (!quiet) {
+        console.log(
+          `%c[db] migration "${result.migrationName}" ok`,
+          "color: green",
+        );
+      }
     } else if (result.status === "Error") {
       console.error(
         `%c[db] migration "${result.migrationName}" failed`,
