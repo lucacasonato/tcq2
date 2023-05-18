@@ -20,7 +20,9 @@ jobs:
 
     name: Deploy
     runs-on: ubuntu-latest
-    environment: production
+    environment:
+      name: production
+      url: https://tcq.fly.dev
     needs: [test]
 
     steps:
