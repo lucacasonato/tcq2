@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "start": "deno run -A --unstable main.ts",
+    "dev": "deno run -A --unstable --watch main.ts"
+  },
+  "imports": {
+    "kysely": "npm:kysely",
+    "$std/": "https://deno.land/std@0.187.0/",
+    "$oauth2_client": "https://deno.land/x/oauth2_client@v1.0.0/mod.ts"
+  }
+}
