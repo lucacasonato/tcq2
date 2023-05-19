@@ -1,5 +1,7 @@
 FROM denoland/deno:1.33.3
 
+RUN apt-get update && apt-get install -y sqlite3
+
 WORKDIR /app
 
 COPY . /app/
