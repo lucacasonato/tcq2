@@ -20,6 +20,11 @@ export function Header(props: { user: User | null }) {
           </div>
         </div>
       )}
+      {!props.user && (
+        <a href="/login" class="text-blue(500 hover:600) hover:underline">
+          Login
+        </a>
+      )}
     </header>
   );
 }
