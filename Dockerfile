@@ -5,8 +5,9 @@ WORKDIR /app
 COPY . /app/
 
 # Cache the sqlite3 binary
-RUN deno eval --unstable 'import { openDatabase } from "./services/db.ts";await openDatabase("/tmp/db.sqlite");'
 RUN deno cache main.ts
+RUN deno eval --unstable 'import { openDatabase } from "./services/db.ts";await openDatabase("/tmp/db.sqlite");'
+RUN deno eval --unstable 'import * as esbuild from "$esbuild"; await esbuild.initialize({});esbuild.stop();'
 
 CMD ["run", "-A", "--unstable", "main.ts"]
 

@@ -1,0 +1,18 @@
+{
+  "_edit_url": "https://generator.jspm.io/#Y2NhYGCvD80rySzJSU1hcCgoSk1MLtEvzkzPS8wpdjDUM9QzZnAoKc/MS9FPzi9KRRUBqi5OLdEtSczMAfHBkiYMEDMcDA30DE30DNG4+impSaXp6IIZ+fnZxeiCWcUVukWlQKflpgIAWWJ/VacA",
+  "imports": {
+    "@preact/signals": "https://ga.jspm.io/npm:@preact/signals@1.1.3/dist/signals.module.js",
+    "@twind/core": "https://ga.jspm.io/npm:@twind/core@1.1.3/core.js",
+    "@twind/preset-tailwind": "https://ga.jspm.io/npm:@twind/preset-tailwind@1.1.4/preset-tailwind.js",
+    "preact": "https://ga.jspm.io/npm:preact@10.14.1/dist/preact.module.js",
+    "preact/debug": "https://ga.jspm.io/npm:preact@10.14.1/debug/dist/debug.module.js",
+    "preact/hooks": "https://ga.jspm.io/npm:preact@10.14.1/hooks/dist/hooks.module.js",
+    "preact/jsx-runtime": "https://ga.jspm.io/npm:preact@10.14.1/jsx-runtime/dist/jsxRuntime.module.js"
+  },
+  "scopes": {
+    "https://ga.jspm.io/": {
+      "@preact/signals-core": "https://ga.jspm.io/npm:@preact/signals-core@1.3.0/dist/signals-core.module.js",
+      "preact/devtools": "https://ga.jspm.io/npm:preact@10.14.1/devtools/dist/devtools.module.js"
+    }
+  }
+}

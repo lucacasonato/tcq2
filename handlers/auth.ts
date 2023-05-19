@@ -26,7 +26,8 @@ export async function login(_req: Request, ctx: Context): Promise<Response> {
     status: 302,
     headers: {
       location: uri.href,
-      "set-cookie": `oauthSessionId=${id}; Path=/; HttpOnly`,
+      "set-cookie":
+        `oauthSessionId=${id}; Path=/; HttpOnly; Secure; SameSite=Lax`,
     },
   });
 }
@@ -118,13 +119,18 @@ export function withUser(
     req: Request,
     user: User | null,
     ctx: Context,
+    params: Record<string, string>,
   ) => Response | Promise<Response>,
-): (req: Request, ctx: Context) => Promise<Response> {
-  return async (req, ctx) => {
+): (
+  req: Request,
+  ctx: Context,
+  params: Record<string, string>,
+) => Promise<Response> {
+  return async (req, ctx, params) => {
     const cookies = getCookies(req.headers);
     const token = cookies.token;
     if (!token) {
-      return handler(req, null, ctx);
+      return handler(req, null, ctx, params);
     }
     const hash = await hashToken(token);
     const user = await ctx.db
@@ -133,7 +139,7 @@ export function withUser(
       .leftJoin("sessions", "sessions.userId", "users.githubId")
       .where("sessions.hash", "==", hash)
       .executeTakeFirst() ?? null;
-    return handler(req, user, ctx);
+    return handler(req, user, ctx, params);
   };
 }
 
@@ -142,14 +148,19 @@ export function authenticated(
     req: Request,
     user: User,
     ctx: Context,
+    params: Record<string, string>,
   ) => Response | Promise<Response>,
-): (req: Request, ctx: Context) => Promise<Response> {
-  return withUser((req, user, ctx) => {
+): (
+  req: Request,
+  ctx: Context,
+  params: Record<string, string>,
+) => Promise<Response> {
+  return withUser((req, user, ctx, params) => {
     if (!user) {
       return new Response("/", {
         status: 401,
       });
     }
-    return handler(req, user, ctx);
+    return handler(req, user, ctx, params);
   });
 }

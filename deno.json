@@ -3,9 +3,21 @@
     "start": "deno run -A --unstable main.ts",
     "dev": "deno run -A --unstable --watch main.ts"
   },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "lib": ["dom", "deno.ns", "deno.unstable"]
+  },
   "imports": {
+    "preact": "npm:preact",
+    "preact/": "npm:/preact/",
+    "@preact/signals": "npm:@preact/signals",
+    "@twind/core": "npm:@twind/core",
+    "@twind/preset-tailwind": "npm:@twind/preset-tailwind",
     "kysely": "npm:kysely",
+    "zod-form-data": "npm:zod-form-data",
     "$std/": "https://deno.land/std@0.187.0/",
-    "$oauth2_client": "https://deno.land/x/oauth2_client@v1.0.0/mod.ts"
+    "$oauth2_client": "https://deno.land/x/oauth2_client@v1.0.0/mod.ts",
+    "$esbuild": "https://deno.land/x/esbuild@v0.17.19/mod.js"
   }
 }
